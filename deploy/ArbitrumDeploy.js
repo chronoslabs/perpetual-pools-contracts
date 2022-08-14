@@ -117,11 +117,11 @@ module.exports = async (hre) => {
         args: [poolKeeper.address],
     })
 
-    // const erc20Factory = await ethers.getContractFactory("ERC20", accounts[0])
+     const erc20Factory = await ethers.getContractFactory("ERC20", accounts[0])
 
-    // const TCR = await erc20Factory.attach(TCR_ADDRESS);
+    const TCR = await erc20Factory.attach(TCR_ADDRESS);
 
-    // await TCR.approve(factory.address, ethers.BigNumber.from('340282366920938463463374607431768211455'))
+    await TCR.approve(factory.address, ethers.BigNumber.from('340282366920938463463374607431768211455'))
 
     // set keeper rewards
     await execute(

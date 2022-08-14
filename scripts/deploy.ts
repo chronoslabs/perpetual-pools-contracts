@@ -33,8 +33,8 @@ async function main() {
     const signers: SignerWithAddress[] = await ethers.getSigners()
     const network = await ethers.provider.getNetwork()
     let networkConstants: NetworkAddresses
-    if (network.chainId == 42161) {
-        networkConstants = arbitrumMainnet
+    if (network.chainId == 534) {
+        networkConstants = candleMainnet
     } else if ((network.chainId = 421611)) {
         networkConstants = arbitrumRinkeby
     } else {
@@ -49,11 +49,11 @@ async function main() {
     /*
      * Set the leverage here. This can just be a plain number. e.g. 10 = 10x leverage
      */
-    const leverage = 1
+    const leverage = 80
     /*
      * The update interval is the frequency of market updates in seconds. e.g. 3600 is 1 hour.
      */
-    const updateInterval = 3600
+    const updateInterval = 360
     /*
      * The frontRunningInterval is the minimum number of seconds one must wait before their commitment
      * is executed. This exists because otherwise, individuals could mint into the favourable side of a
@@ -67,13 +67,13 @@ async function main() {
      * This value should be a percentage in WAD format. Meaning a decimal, multiplied by 10 ** 18.
      * e.g. a 1% minting fee will be 0.01 * 10 ** 18.
      */
-    const mintingFee = 0
+    const mintingFee = 0.02 * 10 ** 18
     /*
      * The burning fee is used in the same way as the minting fee, but is instead taken out when a user burns their tokens.
      * This is capped at 10% in the contracts, so make sure not to set it above this.
      * The burning fee is of the same format as the minting fee, so a 0.5% burning fee, for example, would be 0.005 * 10 ** 18.
      */
-    const burningFee = 0
+    const burningFee = 0.02 * 10 ** 18
     /**
      * The changeInterval is the amount which the minting fee can change per update interval,
      * based on whether there is volatility decay.
